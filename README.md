@@ -1,0 +1,6 @@
+# [PennX: SD4x Programming for the Web with JavaScript](https://www.edx.org/course/programming-web-javascript-pennx-sd4x)
+* [Homework 1 - HTML](https://courses.edx.org/courses/course-v1:PennX+SD4x+2T2017/courseware/6d6b74bb9f8c43088e919a6310f19b39/da2fb7ae127c47ae883a6eb95a65bdb9/?activate_block_id=block-v1%3APennX%2BSD4x%2B2T2017%2Btype%40sequential%2Bblock%40da2fb7ae127c47ae883a6eb95a65bdb9)  
+Modify an existing HTML page that uses inline style attributes so that it instead uses an external CSS file.  
+![hw1](/HW1/Hwk1-calendar.png?raw=true "hw1")
+     
+![Course progress](/SD4xProgress.png?raw=true "SD4x Course progress")
