@@ -4,5 +4,8 @@ Modify an existing HTML page that uses inline style attributes so that it instea
 <div style="text-align:center">
 	<img src="https://github.com/luonglearnstocode/SD4x/blob/master/HW1/Hwk1-calendar.png?raw=true" alt="HW1" width="300" height="300">
 </div>  
+* [Homework 2 - JavaScript](https://courses.edx.org/courses/course-v1:PennX+SD4x+2T2017/courseware/179922122c5f4cb180c57e33213faaf4/97c2cb935275489aa67314ff28f9629c/?child=first)  
+Implement some simple JavaScript functions.  
 
+   
 ![Course progress](/SD4xProgress.png?raw=true "SD4x Course progress")
