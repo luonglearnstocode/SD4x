@@ -9,7 +9,12 @@
  * 				 week, or -1 if the numAnimals or avgFood are less than 0 or non-numeric
  */
 function calculateFoodOrder(numAnimals, avgFood) {
-    // IMPLEMENT THIS FUNCTION!
+    var input = [numAnimals, avgFood].map(Number); // convert variables to their numeric form
+    if (input.some(isNaN) || input.some((n) => n < 0)) {
+       return -1;
+    }
+
+    return input[0] * input[1];
 }
 
 /**
