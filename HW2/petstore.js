@@ -18,7 +18,7 @@ function calculateFoodOrder(numAnimals, avgFood) {
 }
 
 /**
- * Determines which day of the week had the most nnumber of people visiting the
+ * Determines which day of the week had the most number of people visiting the
  * pet store. If more than one day of the week has the same, highest amount of
  * traffic, an array containing the days (in any order) should be returned.
  * (ex. ["Wednesday", "Thursday"]). If the input is null or an empty array, the function
@@ -27,7 +27,23 @@ function calculateFoodOrder(numAnimals, avgFood) {
  * @return a string containing the name of the most popular day of the week if there is only one most popular day, and an array of the strings containing the names of the most popular days if there are more than one that are most popular
  */
 function mostPopularDays(week) {
-    // IMPLEMENT THIS FUNCTION!
+    if (week && week.length) {
+        result = [];
+        maxTraffic = 0;
+        for (var day of week) {
+            var dayTraffic = day.traffic;
+            if (dayTraffic > maxTraffic) {
+                result = [day.name];
+                maxTraffic = dayTraffic;
+            } else if (dayTraffic == maxTraffic) {
+                result.push(day.name);
+            }
+        }
+        return (result.length > 1) ? result : result[0];
+
+    }
+
+    return null;
 }
 
 
