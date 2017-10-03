@@ -6,7 +6,7 @@ var functionMap = {
 	"addButton" : (a, b) => a + b,
 	"subtractButton" : (a, b) => a - b,
 	"multiplyButton" : (a, b) => a * b,
-	"divideButton" : (a, b) => a == 0 ? 'Infinity' : a / b
+	"divideButton" : (a, b) => a / b
 };
 
 function evaluate(stack) {
@@ -49,7 +49,7 @@ $(function() {
  				stack.push(Number(display));
  				display = evaluate(stack);
  				$("#display").val(display);
- 				stack = [];
+ 				stack = [display, this.id];
  			}
  		} else if (stack.length == 1) {
  			stack.push(this.id);
@@ -84,7 +84,4 @@ $(function() {
  			$("#display").val(display);
  		} 		
  	});
-
- 	
-
 });
