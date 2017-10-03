@@ -10,8 +10,18 @@ var functionMap = {
 	"divideButton" : (a, b) => a == 0 ? 'Infinity' : a / b
 };
 
+function evaluate(stack) {
+ 	return functionMap[stack[1]](stack[0], stack[2]);
+};
+
+
 $(function() {
     $(".digit").click(function() {
+    	if (stack.length == 3) {
+    		display = '';
+    		stack = [];
+    	}	
+
     	display += $(this).val();
     	$("#display").val(display);
     	console.log(display);
@@ -20,10 +30,11 @@ $(function() {
  	$("#clearButton").click(function() {
  		display = '';
  		stack = [];
- 		$("#display").val('');
+ 		$("#display").val(display);
  	});
 
  	$(".operator").click(function() {
+ 		stack = [];
  		stack.push(Number(display));
  		stack.push(this.id);
  		display = ''; 		
@@ -34,12 +45,8 @@ $(function() {
  		console.log(stack);
  		display = evaluate(stack);
  		$("#display").val(display);
- 		stack = [];
  	});
 
- 	function evaluate(stack) {
- 		return functionMap[stack[1]](stack[0], stack[2]);
- 	}
-
+ 	
 
 });
