@@ -20,34 +20,37 @@ var current;
 
 $(function() {
     $(".digit").click(function() {
-    	if (stack.length == 1) { // new operation 
+    	if (stack.length == 1 || stack.length == 3) { // new operation 
     		display = '';
     		stack = [];
     	} 
 
     	display += $(this).val();
-    	$("#display").val(display);
+    	$("#display").val(Number(display));
     	current = Number(display);
  	});
 
  	$("#clearButton").click(function() { // restore to initial state
  		display = '';
  		stack = [];
+ 		current = NaN;
  		$("#display").val(display);
  	});
 
  	$(".operator").click(function() {
- 		current = NaN;
-
  		if (stack.length == 3) { // just perform operation
  			stack = [];
  			stack.push(Number(display));
  			stack.push(this.id);
  		} else if (stack.length == 2) { // in middle of operation
- 			stack.push(Number(display));
- 			display = evaluate(stack);
- 			$("#display").val(display);
- 			stack = [];
+ 			if (isNaN(current)) { // operator after operator
+ 				stack[1] = this.id;
+ 			} else {
+ 				stack.push(Number(display));
+ 				display = evaluate(stack);
+ 				$("#display").val(display);
+ 				stack = [];
+ 			}
  		} else if (stack.length == 1) {
  			stack.push(this.id);
  		} else {
@@ -55,10 +58,8 @@ $(function() {
  			stack.push(this.id);
  			display = ''; 
  		}
+ 		current = NaN;
  		console.log(stack);
- 		// stack = [];
- 		// stack.push(Number(display));
- 		// stack.push(this.id);
  		display = ''; 		
  	});
 
@@ -69,7 +70,6 @@ $(function() {
  			if (current) { // user have inputed some numbers
  				stack = [current];
  			}
- 			display = '';
  		} else if (stack.length == 2) {
  			if (!isNaN(current)) {
  				stack.push(Number(display));
