@@ -34,6 +34,7 @@ $(function() {
  		console.log(stack);
  		display = evaluate(stack);
  		$("#display").val(display);
+ 		stack = [];
  	});
 
  	function evaluate(stack) {
