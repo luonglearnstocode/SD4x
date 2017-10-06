@@ -1,9 +1,18 @@
 class FontChooser extends React.Component {
 	constructor(props) {
 		super(props);
+		var min = this.props.min > 1 ? this.props.min : 1;
+		var max = this.props.max;
+		if (max < min) [min, max] = [max, min];
+		var size = this.props.size;
+		if (size < min) size = min;
+		if (size > max) size = max;
+
 		this.state = {isBold : this.props.bold == 'true',
+						min : min,
+						max : max,
 						isHidden : true,
-						size : parseInt(this.props.size)};
+						size : parseInt(size)};
 		
 	}
 	
@@ -21,13 +30,13 @@ class FontChooser extends React.Component {
 	}
 
 	decreaseFontSize() {
-		if (this.state.size > this.props.min) {
+		if (this.state.size > this.state.min) {
 			this.setState({size : this.state.size - 1});	
 		}
 	}
 	
 	increaseFontSize() {
-		if (this.state.size < this.props.max) {
+		if (this.state.size < this.state.max) {
 			this.setState({size : this.state.size + 1});	
 		}
 	}
@@ -38,7 +47,7 @@ class FontChooser extends React.Component {
   
 	render() {
 		var weight = this.state.isBold ? 'bold' : 'normal';
-		var color = (this.state.size == this.props.max || this.state.size == this.props.min) ? 'red' : 'black';
+		var color = (this.state.size == this.state.min || this.state.size == this.state.max) ? 'red' : 'black';
 		var inlineStyles = {fontSize: this.state.size, fontWeight : weight, color : color};	
 
 		return (
@@ -51,7 +60,8 @@ class FontChooser extends React.Component {
 					onDoubleClick={this.resetFontSize.bind(this)}>{this.state.size}</span>
 				<button class="form" id="increaseButton" hidden='true' 
 					onClick={this.increaseFontSize.bind(this)}>+</button>
-				<span id="textSpan" style={inlineStyles} onClick={this.toggle.bind(this)}>{this.props.text}</span>
+				<span id="textSpan" style={inlineStyles} 
+					onClick={this.toggle.bind(this)}>{this.props.text}</span>
 			</div>
 		);
 	}
