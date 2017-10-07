@@ -1,18 +1,20 @@
 class FontChooser extends React.Component {
 	constructor(props) {
 		super(props);
-		var min = this.props.min > 1 ? this.props.min : 1;
-		var max = this.props.max;
+		var min = this.props.min > 1 ? parseInt(this.props.min) : 1;
+		var max = parseInt(this.props.max);
 		if (max < min) [min, max] = [max, min];
-		var size = this.props.size;
+		var size = parseInt(this.props.size);
 		if (size < min) size = min;
 		if (size > max) size = max;
+		var originalSize = size;
 
 		this.state = {isBold : this.props.bold == 'true',
-						min : min,
-						max : max,
-						isHidden : true,
-						size : parseInt(size)};
+									min : min,
+									max : max,
+									isHidden : true,
+									originalSize : size,
+									size : parseInt(size)};
 		
 	}
 	
@@ -42,7 +44,7 @@ class FontChooser extends React.Component {
 	}
 
 	resetFontSize() {
-		this.setState({size : parseInt(this.props.size)});
+		this.setState({size : parseInt(this.state.originalSize)});
 	}
   
 	render() {
@@ -52,13 +54,13 @@ class FontChooser extends React.Component {
 
 		return (
 			<div>
-				<input class="form" type="checkbox" id="boldCheckbox" hidden='true' 
+				<input className="form" type="checkbox" id="boldCheckbox" hidden='true' 
 					defaultChecked={this.state.isBold} onChange={this.handleChangeCheckbox.bind(this)}/>
-				<button class="form" id="decreaseButton" hidden='true' 
+				<button className="form" id="decreaseButton" hidden='true' 
 					onClick={this.decreaseFontSize.bind(this)}>-</button>
-				<span class="form" id="fontSizeSpan" hidden='true' 
+				<span className="form" id="fontSizeSpan" hidden='true' 
 					onDoubleClick={this.resetFontSize.bind(this)}>{this.state.size}</span>
-				<button class="form" id="increaseButton" hidden='true' 
+				<button className="form" id="increaseButton" hidden='true' 
 					onClick={this.increaseFontSize.bind(this)}>+</button>
 				<span id="textSpan" style={inlineStyles} 
 					onClick={this.toggle.bind(this)}>{this.props.text}</span>
@@ -66,4 +68,3 @@ class FontChooser extends React.Component {
 		);
 	}
 }
-
