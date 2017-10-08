@@ -19,3 +19,12 @@ Develop a calculator app using JavaScript and jQuery.
 
 * [Homework 4 - React](https://courses.edx.org/courses/course-v1:PennX+SD4x+2T2017/courseware/05f321f8b38c400b96330598e23d639c/af88363d3c124691b0e1441ef4a1cd04/?activate_block_id=block-v1%3APennX%2BSD4x%2B2T2017%2Btype%40sequential%2Bblock%40af88363d3c124691b0e1441ef4a1cd04)      
 Develop a React component that allows the reader of a web page to change the appearance of a piece of text.
+
+* [Homework 5 - React](https://courses.edx.org/courses/course-v1:PennX+SD4x+2T2017/courseware/05f321f8b38c400b96330598e23d639c/316869bbc9304b30bde6890d32c251fa/?activate_block_id=block-v1%3APennX%2BSD4x%2B2T2017%2Btype%40sequential%2Bblock%40316869bbc9304b30bde6890d32c251fa)      
+Develop a simple application to track lists of items using React with multiple components.
+
+<div style="text-align:center">
+	<img src="https://d37djvu3ytnwxt.cloudfront.net/assets/courseware/v1/f0e0d19e5464abe97f76ad136bf8315a/asset-v1:PennX+SD4x+2T2017+type@asset+block/important-list-tracker-3.png" alt="HW5">
+</div>
+
+
