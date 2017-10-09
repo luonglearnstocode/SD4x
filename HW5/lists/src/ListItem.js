@@ -9,6 +9,12 @@ class ListItem extends Component {
 
     handleClick() {
 	// Implement this function!
+
+      this.setState({
+        color : this.state.color == 'black' ? 'gray' : 'black'
+      }, function() {
+        console.log(this.state);
+      });
     }
 
   render() {
