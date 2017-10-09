@@ -21,14 +21,14 @@ class App extends Component {
    */
   handleAddList(s) {
       // Implement this function!
-      var updatedItems = this.state.items;
+      let updatedItems = this.state.items;
       updatedItems[s.newList] = [];
 
       this.setState({
         lists : this.state.lists.concat(s.newList),
         items : updatedItems
       }, function () {
-        console.log(this.state);
+        // console.log(this.state);
       });
 
   }
@@ -43,6 +43,14 @@ class App extends Component {
    */
   handleAddItem(s) {
       // Implement this function!
+      let updatedItems = this.state.items;
+      updatedItems[s.name].push(s.newItem);
+
+      this.setState({
+        items : updatedItems
+      }, function () {
+        console.log(this.state);
+      });
   }
 
   /**

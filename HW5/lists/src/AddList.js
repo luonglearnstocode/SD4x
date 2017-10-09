@@ -9,12 +9,11 @@ class AddList extends Component {
   handleSubmit(e) {
       e.preventDefault(); // this prevents the page from reloading -- do not delete this line!
 
-      // Implement the rest of this function here!
-      
+      // Implement the rest of this function here!     
       this.setState({
         newList : this.refs.id.value
       }, function() {
-        console.log(this.state);
+        // console.log(this.state);
         this.props.addList(this.state);
       });
   }

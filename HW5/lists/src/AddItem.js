@@ -5,6 +5,7 @@ class AddItem extends Component {
   constructor() {
     super();
     this.state = {
+      // name : this.props.idName,
       newItem:{}
     }
   }
@@ -13,6 +14,13 @@ class AddItem extends Component {
       e.preventDefault(); // this prevents the page from reloading -- do not delete this line!
 
       // Implement the rest of this function here!
+      this.setState({
+        name : this.props.idName,
+        newItem : {name : this.refs.id.value}
+      }, function() {
+        console.log(this.state);
+        this.props.addItem(this.state);
+      });
   }
     
 
