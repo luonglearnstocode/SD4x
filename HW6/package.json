@@ -1,0 +1,15 @@
+{
+  "name": "hw6",
+  "version": "1.0.0",
+  "description": "homework 6 node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luong Nguyen",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^4.12.1"
+  }
+}

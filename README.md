@@ -27,4 +27,5 @@ Develop a simple application to track lists of items using React with multiple c
 	<img src="https://d37djvu3ytnwxt.cloudfront.net/assets/courseware/v1/f0e0d19e5464abe97f76ad136bf8315a/asset-v1:PennX+SD4x+2T2017+type@asset+block/important-list-tracker-3.png" alt="HW5">
 </div>
 
-
+* [Homework 6 - Node](https://courses.edx.org/courses/course-v1:PennX+SD4x+2T2017/courseware/32f2f5442e03410283c2cf26f553e8ad/b371006e8fbd484396348873832fb2e3/?activate_block_id=block-v1%3APennX%2BSD4x%2B2T2017%2Btype%40sequential%2Bblock%40b371006e8fbd484396348873832fb2e3)      
+Use Node.js and Express to develop a Web API that provides services related to data stored in a MongoDB database.
