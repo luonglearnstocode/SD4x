@@ -94,7 +94,7 @@ app.get('/calculatePrice', (req, res) => {
 	}
 
 	var idToQtyMap = new Map();
-	if (query.id.length == query.qty.length) { // numbers of elements match
+	if (query.id.length && query.qty.length && query.id.length == query.qty.length) { // numbers of elements match
 		for (var i = 0; i < query.id.length; i++) {
 			var key = query.id[i];
 			var val = query.qty[i];
@@ -107,32 +107,35 @@ app.get('/calculatePrice', (req, res) => {
 				}
 			}
 		}
-	}
-	console.log(idToQtyMap);
 
-	var idToPriceMap = new Map();
-	var items = [];
-	var totalPrice = 0;
+		var idToPriceMap = new Map();
+		var items = [];
+		var totalPrice = 0;
 
-	Toy.find( {id : Array.from(idToQtyMap.keys())}, (err, toys) => {
-		if (err) {
-		    res.type('html').status(500);
-		    res.send('Error: ' + err);
-		} else {
-			toys.forEach((toy) => idToPriceMap.set(toy.id, toy.price));
-			
-			for (var id of Array.from(idToPriceMap.keys())) {
-				var item = {
-					item : id,
-					qty : idToQtyMap.get(id),
-					subtotal : idToQtyMap.get(id) * idToPriceMap.get(id)
+		Toy.find( {id : Array.from(idToQtyMap.keys())}, (err, toys) => {
+			if (err) {
+			    res.type('html').status(500);
+			    res.send('Error: ' + err);
+			} else {
+				toys.forEach((toy) => idToPriceMap.set(toy.id, toy.price));
+				
+				for (var id of Array.from(idToPriceMap.keys())) {
+					var item = {
+						item : id,
+						qty : idToQtyMap.get(id),
+						subtotal : idToQtyMap.get(id) * idToPriceMap.get(id)
+					}
+					totalPrice += item.subtotal;
+					items.push(item);
 				}
-				totalPrice += item.subtotal;
-				items.push(item);
+			    res.json({totalPrice : totalPrice, items : items});
 			}
-		    res.json({totalPrice : totalPrice, items : items});
-		}
-	});	
+		});	
+	} else {
+		res.json({});
+	}
+
+	
 });
 
 
