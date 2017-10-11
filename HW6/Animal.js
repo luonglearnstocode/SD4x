@@ -12,7 +12,7 @@ var animalSchema = new Schema( {
 	gender: {type: String, enum: ['male', 'female']},
 	traits: [String],
 	age: Number
-    } );
+} );
 
 
 module.exports = mongoose.model('Animal', animalSchema);
