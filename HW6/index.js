@@ -25,7 +25,7 @@ app.get('/findToy', (req, res) => {
 			    res.json({});
 			}
 		});	  
-	} else {
+	} else { // id unspecified
         res.json({});
     }  
 });
@@ -52,7 +52,7 @@ app.get('/findAnimals', (req, res) => {
 			    res.json(animals);
 			}
 		});
-	} else {
+	} else { // all parameter are unspecified
 		res.json([]);
 	}
 });
@@ -83,6 +83,57 @@ app.get('/animalsYoungerThan', (req, res) => {
 		res.json({});
 	}
 });
+
+app.get('/calculatePrice', (req, res) => {
+	var query = {};
+	if (req.query.id) {
+	    query.id = req.query.id;
+	}
+	if (req.query.qty) {
+	    query.qty = req.query.qty;
+	}
+
+	var idToQtyMap = new Map();
+	if (query.id.length == query.qty.length) { // numbers of elements match
+		for (var i = 0; i < query.id.length; i++) {
+			var key = query.id[i];
+			var val = query.qty[i];
+
+			if (!isNaN(val) && val > 0) { // qty> parameter is less than one or non-numeric, then it and the corresponding id> parameter should be ignored
+				if (idToQtyMap.has(key)) { // duplicate id
+					idToQtyMap.set(key, idToQtyMap.get(key) + val);
+				} else {
+					idToQtyMap.set(key, val);	
+				}
+			}
+		}
+	}
+
+	var idToPriceMap = new Map();
+	var items = [];
+	var totalPrice = 0;
+
+	Toy.find( {id : Array.from(idToQtyMap.keys())}, (err, toys) => {
+		if (err) {
+		    res.type('html').status(500);
+		    res.send('Error: ' + err);
+		} else {
+			toys.forEach((toy) => idToPriceMap.set(toy.id, toy.price));
+			
+			for (var id of Array.from(idToPriceMap.keys())) {
+				var item = {
+					item : id,
+					qty : idToQtyMap.get(id),
+					subtotal : idToQtyMap.get(id) * idToPriceMap.get(id)
+				}
+				totalPrice += item.subtotal;
+				items.push(item);
+			}
+		    res.json({totalPrice : totalPrice, items : items});
+		}
+	});	
+});
+
 
 app.listen(3000, () => {
 	console.log('Now listening on port 3000');
