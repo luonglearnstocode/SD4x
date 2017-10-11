@@ -101,13 +101,14 @@ app.get('/calculatePrice', (req, res) => {
 
 			if (!isNaN(val) && val > 0) { // qty> parameter is less than one or non-numeric, then it and the corresponding id> parameter should be ignored
 				if (idToQtyMap.has(key)) { // duplicate id
-					idToQtyMap.set(key, idToQtyMap.get(key) + val);
+					idToQtyMap.set(key, Number(idToQtyMap.get(key)) + Number(val));
 				} else {
 					idToQtyMap.set(key, val);	
 				}
 			}
 		}
 	}
+	console.log(idToQtyMap);
 
 	var idToPriceMap = new Map();
 	var items = [];
