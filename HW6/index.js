@@ -42,15 +42,21 @@ app.get('/findAnimals', (req, res) => {
 	    query.gender = req.query.gender;
 	}
 
-	Animal.find( query, '-_id name species breed gender age', (err, animals) => {
-		if (err) {
-		    res.type('html').status(500);
-		    res.send('Error: ' + err);
-		}
-		else {
-		    res.json(animals);
-		}
-	});
+	if (Object.keys(query).length) {
+		Animal.find( query, '-_id name species breed gender age', (err, animals) => {
+			if (err) {
+			    res.type('html').status(500);
+			    res.send('Error: ' + err);
+			}
+			else {
+			    res.json(animals);
+			}
+		});
+	} else {
+		res.json([]);
+	}
+
+	
 
 });
 
