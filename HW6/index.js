@@ -55,11 +55,34 @@ app.get('/findAnimals', (req, res) => {
 	} else {
 		res.json([]);
 	}
-
-	
-
 });
 
+app.get('/animalsYoungerThan', (req, res) => {
+	var result = {count : 0, names : []};
+	var age = req.query.age;
+
+	if (age && !isNaN(age)) {
+		Animal.find({age : {$lt : age}}, (err, animals) => {
+			if (err) {
+			    res.type('html').status(500);
+			    res.send('Error: ' + err);
+			}
+			else {
+				if (animals.length > 0) {
+					result.count = animals.length;
+					result.names = animals.map(animal => animal.name);
+					console.log(result);
+				    res.json(result);
+				} else { // no animals younger than that age
+					res.json({count : 0});
+				}
+				
+			}
+		});
+	} else { // age unspecified or not a number
+		res.json({});
+	}
+});
 
 app.listen(3000, () => {
 	console.log('Now listening on port 3000');
